@@ -11,18 +11,22 @@ export class Counter extends React.Component {
     }
     clickHandle() {
         this.setState(state => ({
-            value: state.value+1
+            //value: state.value == "+" ? "-" : "+",
+            display: !state.display
         }))
     }
     render() {
         return (
-            <Button label={this.state.value} onClick={this.clickHandle}></Button>
+            <>
+            <Button label={this.state.display ? "-" : "+"} onClick={this.clickHandle}></Button>
+            {this.state.display && this.props.text}
+            </>
         );
     }
 }
 
 Counter.defaultProps = {
-    value: 0
+    value: "+"
 }
 
 Counter.propTypes = {
