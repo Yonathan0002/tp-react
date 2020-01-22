@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Counter text="un text" />
-
+        <Chronometer text="start"/>
       </header>
     </div>
   );

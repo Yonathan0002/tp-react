@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import Button from "./Button";
 
 export class Chronometer extends React.Component {
@@ -7,8 +7,10 @@ export class Chronometer extends React.Component {
         super(props);
         this.state = {
             time: 0,
+            run: false
         };
         this.tick = this.tick.bind(this);
+        this.clickHandle = this.clickHandle.bind(this);
     }
     componentDidMount() {
         this.start();
@@ -25,16 +27,32 @@ export class Chronometer extends React.Component {
         this.startDate = new Date();
         this.setState({
             time: 0,
+            run: true
         }, () => {
-            this.timerID = setInterval(() => this.tick(), 1000);
+            this.timerID = setInterval(this.tick, 1000);
         })
     }
     stop() {
+        this.setState({
+            run: false
+        })
         clearInterval(this.timerID);
+    }
+
+    clickHandle() {
+        console.log(this.state.run)
+        if(this.state.run ){
+             this.stop() ;
+            } 
+        else { 
+            this.start();
+        }
     }
     render() {
         return (
-            <Button label={this.state.time} onClick={this.clickHandle}></Button>
+            <Button label={this.state.run ? this.state.time : this.props.text} onClick={this.clickHandle}></Button>
         );
     }
 }
+
+export default Chronometer;
