@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 import Button from "./Button";
 
@@ -50,7 +52,9 @@ export class Chronometer extends React.Component {
     }
     render() {
         return (
-            <Button label={this.state.run ? this.state.time : this.props.text} onClick={this.clickHandle}></Button>
+            <Button onClick={this.clickHandle}>
+                {this.state.run ? this.state.time : <FontAwesomeIcon icon={faPlay} />}
+            </Button>
         );
     }
 }

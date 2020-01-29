@@ -10,6 +10,7 @@ export class Counter extends React.Component {
         this.clickHandle = this.clickHandle.bind(this);
     }
     clickHandle() {
+console.log(this.state)
         this.setState(state => ({
             //value: state.value == "+" ? "-" : "+",
             display: !state.display
@@ -18,8 +19,14 @@ export class Counter extends React.Component {
     render() {
         return (
             <>
-            <Button label={this.state.display ? "-" : "+"} onClick={this.clickHandle}></Button>
-            {this.state.display && this.props.text}
+            <Button onClick={this.clickHandle}>
+                {this.state.display ?
+                    <div>-</div>:
+                    <div><em>dqfgkljm</em><b>+</b></div>
+                }
+            </Button>
+            {this.state.display && this.props.text} 
+
             </>
         );
     }
