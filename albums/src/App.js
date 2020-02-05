@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AlbumList from './components/AlbumsList';
+import Explorer from './components/Explorer';
 
 function App() {
 
@@ -37,10 +38,12 @@ function App() {
         "jaquette": "/albums/277/jaquette"
     }
 ]
-
   return (
+    
     <div className="App">
-      <header className="App-header">
+      
+      <header className="">
+      <Explorer></Explorer>
         <AlbumList albums={albums} ak="ea"></AlbumList>
       </header>
     </div>

@@ -10,7 +10,7 @@ export function AlbumList(props){
         retour.push(<AlbumItem key={album.id} data={album}/>)
     });
     console.log(retour)
-    return (<div>{retour}</div>)
+    return (<div class="card-columns">{retour}</div>)
 }
 
 export default AlbumList;
