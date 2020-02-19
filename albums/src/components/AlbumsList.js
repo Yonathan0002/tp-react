@@ -8,7 +8,7 @@ export function AlbumList(props){
         //console.log(album)
         retour.push(<AlbumItem key={album.id} data={album}/>)
     });
-    console.log(retour)
+    //console.log(retour)
     return (<div class="container"><div class="row">{retour}</div></div>)
 }
 
