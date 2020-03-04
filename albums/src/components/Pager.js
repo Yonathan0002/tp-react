@@ -11,22 +11,19 @@ export function Pager({onPageChange, page,dernierepage, ...props}) {
     }
 
     return (
-
-            <ul class="pagination justify-content-center">
-                <li class="page-item" onClick={()=>onPageChange(0)}>
-                <a class="page-link" href="#" aria-label="Previous">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2 mx-auto pb-3" role="group" aria-label="First group">
+                <button type="button" class="btn btn-dark" onClick={()=>onPageChange(0)}>
                     <span aria-hidden="true">&laquo;</span>
-                </a>
-                </li>
-                <li class="page-item" onClick={()=>onPageChange(previouspage)}><a class="page-link" href="#">&#60;</a></li>
-                <li class="page-item"><a class="page-link" href="#">{page}</a></li>
-                <li class="page-item" onClick={()=>onPageChange(nextpage)}><a class="page-link" href="#">&#62;</a></li>
-                <li class="page-item" onClick={()=>onPageChange(dernierepage)}>
-                <a class="page-link" href="#" aria-label="Next">
+                </button>
+                <button type="button" class="btn btn-dark" onClick={()=>onPageChange(previouspage)}>&#60;</button>
+                <button type="button" class="btn btn-dark">{page}</button>
+                <button type="button" class="btn btn-dark" onClick={()=>onPageChange(nextpage)}>&#62;</button>
+                <button type="button" class="btn btn-dark" onClick={()=>onPageChange(dernierepage)}>
                     <span aria-hidden="true">&raquo;</span>
-                </a>
-                </li>
-            </ul>
+                </button>
+            </div>
+        </div>
     );
 
 }

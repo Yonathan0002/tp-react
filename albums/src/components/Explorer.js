@@ -33,6 +33,7 @@ export class Explorer extends React.Component {
         };
         this.getAlbumsFromApi();
         this.handlePageChange = this.handlePageChange.bind(this);
+        this.tri = this.tri.bind(this);
         //this.page = 0;
     }
     getAlbumsFromApi(page = 0) {
@@ -55,10 +56,14 @@ export class Explorer extends React.Component {
         this.getAlbumsFromApi(page);
         this.setState({page:page})
     }
+    tri(value){
+        console.log(value)
+    }
+
     render() {
         //console.log("state : ", this.state)
         let data = []
-        data.push(<SortButton></SortButton>);
+        data.push(<SortButton triechange={this.tri}></SortButton>);
         data.push(<Pager onPageChange={this.handlePageChange} page={this.state.page} dernierepage={this.state.dernierepage} ></Pager>);
         data.push(this.state.albums !== null ? <AlbumList albums={this.state.albums}/> : <FontAwesomeIcon icon={faSpinner} color="white" size="6x" pulse/>);
         data.push(<Pager onPageChange={this.handlePageChange} page={this.state.page} dernierepage={this.state.dernierepage} ></Pager>);

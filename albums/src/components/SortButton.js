@@ -1,17 +1,22 @@
 import React from 'react';
-export function SortButton(...props) {
-    //console.log(props)
+//export function SortButton({triechange, ...props}) {
+export function SortButton({triechange, ...props}) {
+    console.log(triechange, props)
     console.log("ok")
     return (
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-<select class="custom-select justify-content-center" id="inputGroupSelect02">
-    <option selected="">Choose...</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-  </select>
-  </li></ul>
+        <div>
+            <select lass="custom-select">
+                <option value="">--</option>
+                <option value="nom">nom</option>
+                <option value="année">année</option>
+                <option value="genre">genre</option>
+                <option value="artiste">artiste</option>
+            </select>
+            <select lass="custom-select">
+                <option></option>
+                <option></option>
+            </select>
+        </div>
     );
 
 }
