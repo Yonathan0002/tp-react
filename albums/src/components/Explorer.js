@@ -29,16 +29,20 @@ export class Explorer extends React.Component {
         this.state = {
             albums:null,
             page:0,
-            dernierepage:41
+            dernierepage:41,
+            sort:"nom",
+            order: "true"
+
         };
         this.getAlbumsFromApi();
         this.handlePageChange = this.handlePageChange.bind(this);
-        this.tri = this.tri.bind(this);
+        this.triechange = this.triechange.bind(this);
         //this.page = 0;
     }
-    getAlbumsFromApi(page = 0) {
+    getAlbumsFromApi(page = 0, sort = "nom", order = "true") {
         var url = `http://jonquet/albums/public/albums?critereTri=nom&triAscendant=true&albumsParPage=10&page=`
-        url = `http://jonquet/albums/public/albums?critereTri=nom&triAscendant=true&albumsParPage=10&albumsParPage=12&page=`+page
+        url = `http://jonquet/albums/public/albums?albumsParPage=12&page=` + page + "&triAscendant=" + order + "&critereTri=" + sort
+        console.log(url)
         fetch(url)
             .then((reponse)=>{
                 return reponse.json()
@@ -53,17 +57,28 @@ export class Explorer extends React.Component {
     }
     handlePageChange(page) {
         //console.log("handlePageChange", page)
-        this.getAlbumsFromApi(page);
+        this.getAlbumsFromApi(page, this.state.sort, this.state.order);
         this.setState({page:page})
     }
-    tri(value){
+    triechange(value){
         console.log(value)
+        let order = "true"
+        if (value.order == "⬇️"){
+            order = "false"
+        }
+        this.setState({
+            sort:value.sort, 
+            order:order
+        }, () => {
+            console.log(this.state.sort, this.state.order)
+            this.getAlbumsFromApi(this.state.page, value.sort, order)
+        })
     }
 
     render() {
         //console.log("state : ", this.state)
         let data = []
-        data.push(<SortButton triechange={this.tri}></SortButton>);
+        data.push(<SortButton triechange={this.triechange}></SortButton>);
         data.push(<Pager onPageChange={this.handlePageChange} page={this.state.page} dernierepage={this.state.dernierepage} ></Pager>);
         data.push(this.state.albums !== null ? <AlbumList albums={this.state.albums}/> : <FontAwesomeIcon icon={faSpinner} color="white" size="6x" pulse/>);
         data.push(<Pager onPageChange={this.handlePageChange} page={this.state.page} dernierepage={this.state.dernierepage} ></Pager>);
